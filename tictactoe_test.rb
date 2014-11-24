@@ -72,6 +72,18 @@ describe Board do
 
       assert_equal 'O', b.winner
     end
+
+    it 'returns X if a diagonal contains only Xs' do
+      b = Board.new([['X', nil, nil], [nil, 'X', nil], [nil, nil, 'X']])
+
+      assert_equal 'X', b.winner
+    end
+
+    it 'returns O if a diagonal contains only Os' do
+      b = Board.new([[nil, nil, 'O'], [nil, 'O', nil], ['O', nil, nil]])
+
+      assert_equal 'O', b.winner
+    end
   end
 
 end
