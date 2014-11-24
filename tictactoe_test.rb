@@ -41,4 +41,25 @@ describe Board do
 
     refute b.full?
   end
+
+  describe 'winner' do
+    it 'returns nil when the board is empty' do
+      b = Board.new
+
+      assert_nil b.winner
+    end
+
+    it 'returns X if one whole row contains only Xs' do
+      b = Board.new([['X', 'X', 'X'], [nil, nil, nil], [nil, nil, nil]])
+
+      assert_equal 'X', b.winner
+    end
+
+    it 'returns O if one whole row contains only Os' do
+      b = Board.new([['O', 'O', 'O'], [nil, nil, nil], [nil, nil, nil]])
+
+      assert_equal 'O', b.winner
+    end
+  end
+
 end

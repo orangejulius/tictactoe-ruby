@@ -15,4 +15,11 @@ class Board
   def full?
     @rows.all? {|r| r.none? {|square| square.nil?}}
   end
+
+  def winner
+    ['X', 'O'].each do |player|
+      return player if @rows.any? {|row| row.all? {|square| square == player}}
+    end
+    return nil
+  end
 end
