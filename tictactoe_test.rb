@@ -60,6 +60,18 @@ describe Board do
 
       assert_equal 'O', b.winner
     end
+
+    it 'returns X if one whole column contains only Xs' do
+      b = Board.new(Array.new(3) { ['X', nil, nil]})
+
+      assert_equal 'X', b.winner
+    end
+
+    it 'returns O if one whole column contains only Xs' do
+      b = Board.new(Array.new(3) { ['O', nil, nil]})
+
+      assert_equal 'O', b.winner
+    end
   end
 
 end

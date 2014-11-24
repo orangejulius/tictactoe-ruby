@@ -18,6 +18,9 @@ class Board
 
   def winner
     ['X', 'O'].each do |player|
+      [0, 1, 2].each do |col|
+        return player if @rows.all? {|row| row[col] == player }
+      end
       return player if @rows.any? {|row| row.all? {|square| square == player}}
     end
     return nil
