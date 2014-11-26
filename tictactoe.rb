@@ -3,11 +3,12 @@ class Board
   class InvalidSquares < Exception; end
 
   PLAYERS = ['X', 'O']
+  SIZE = 3
 
-  def initialize(board = Array.new(3) { Array.new(3) })
-    raise InvalidSize unless board.length == 3
+  def initialize(board = Array.new(SIZE) { Array.new(SIZE) })
+    raise InvalidSize unless board.length == SIZE
 
-    raise InvalidSize unless board.all? {|r| r.length == 3}
+    raise InvalidSize unless board.all? {|r| r.length == SIZE}
 
     raise InvalidSquares unless board.all? {|r| r.all? {|s| s.nil? || PLAYERS.include?(s)}}
 
@@ -32,7 +33,7 @@ class Board
   attr_reader :rows
 
   def columns
-    [0, 1, 2].map do |idx|
+    SIZE.times.map do |idx|
       rows.map{|row| row[idx]}
     end
   end
