@@ -39,7 +39,13 @@ class Board
   end
 
   def diagonals
-    [[rows[0][0], rows[1][1], rows[2][2]],
-    [rows[0][2], rows[1][1], rows[2][0]]]
+    a = SIZE.times.map do |idx|
+      rows[idx][idx]
+    end
+    b = SIZE.times.map do |idx|
+      rows[idx][SIZE - idx - 1]
+    end
+
+    [a, b]
   end
 end
