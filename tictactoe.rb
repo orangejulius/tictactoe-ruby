@@ -18,13 +18,9 @@ class Board
 
   def winner
     ['X', 'O'].each do |player|
-      diagonals.each do |d|
-        return player if d.all? {|square| square == player}
+      [diagonals, columns, rows].each do |triples|
+        return player if triples.any? {|triple| triple.all? {|square| square == player}}
       end
-      [0, 1, 2].each do |col|
-        return player if rows.all? {|row| row[col] == player }
-      end
-      return player if rows.any? {|row| row.all? {|square| square == player}}
     end
     return nil
   end
@@ -32,6 +28,12 @@ class Board
   private
 
   attr_reader :rows
+
+  def columns
+    [0, 1, 2].map do |idx|
+      rows.map{|row| row[idx]}
+    end
+  end
 
   def diagonals
     [[rows[0][0], rows[1][1], rows[2][2]],
