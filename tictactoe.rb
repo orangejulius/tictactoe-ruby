@@ -2,12 +2,14 @@ class Board
   class InvalidSize < Exception; end
   class InvalidSquares < Exception; end
 
+  PLAYERS = ['X', 'O']
+
   def initialize(board = Array.new(3) { Array.new(3) })
     raise InvalidSize unless board.length == 3
 
     raise InvalidSize unless board.all? {|r| r.length == 3}
 
-    raise InvalidSquares unless board.all? {|r| r.all? {|s| ['X', 'O', nil].include? s}}
+    raise InvalidSquares unless board.all? {|r| r.all? {|s| s.nil? || PLAYERS.include?(s)}}
 
     @rows = board
   end
@@ -17,7 +19,7 @@ class Board
   end
 
   def winner
-    ['X', 'O'].each do |player|
+    PLAYERS.each do |player|
       [diagonals, columns, rows].each do |triples|
         return player if triples.any? {|triple| triple.all? {|square| square == player}}
       end
