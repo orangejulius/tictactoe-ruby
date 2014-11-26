@@ -13,7 +13,7 @@ class Board
   end
 
   def full?
-    @rows.all? {|r| r.none? {|square| square.nil?}}
+    rows.all? {|r| r.none? {|square| square.nil?}}
   end
 
   def winner
@@ -22,17 +22,19 @@ class Board
         return player if d.all? {|square| square == player}
       end
       [0, 1, 2].each do |col|
-        return player if @rows.all? {|row| row[col] == player }
+        return player if rows.all? {|row| row[col] == player }
       end
-      return player if @rows.any? {|row| row.all? {|square| square == player}}
+      return player if rows.any? {|row| row.all? {|square| square == player}}
     end
     return nil
   end
 
   private
 
+  attr_reader :rows
+
   def diagonals
-    [[@rows[0][0], @rows[1][1], @rows[2][2]],
-    [@rows[0][2], @rows[1][1], @rows[2][0]]]
+    [[rows[0][0], rows[1][1], rows[2][2]],
+    [rows[0][2], rows[1][1], rows[2][0]]]
   end
 end
