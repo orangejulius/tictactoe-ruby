@@ -21,8 +21,8 @@ class Board
 
   def winner
     PLAYERS.each do |player|
-      [diagonals, columns, rows].each do |triples|
-        return player if triples.any? {|triple| triple.all? {|square| square == player}}
+      [diagonals, columns, rows].flatten(1).each do |triple|
+        return player if triple.all? {|square| square == player}
       end
     end
     return nil
