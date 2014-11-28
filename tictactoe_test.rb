@@ -85,5 +85,4 @@ describe Board do
       assert_equal 'O', b.winner
     end
   end
-
 end
