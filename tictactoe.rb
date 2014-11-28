@@ -16,7 +16,7 @@ class Board
   end
 
   def full?
-    rows.all? {|r| r.none? {|square| square.nil?}}
+    rows.all? {|r| r.none?(&:nil?)}
   end
 
   def winner
